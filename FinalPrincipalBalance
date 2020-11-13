@@ -1,0 +1,32 @@
+/*This Program will calculate the compound monthly interest.  
+ * The program asks user to enter value of principle (p), 
+ * annual interest rate (r) and time (t) and finally calculates the compound interest by formula is 
+ * A= P*(1 + r/12)^t.*/
+
+
+import java.util.Scanner;
+
+public class Pro2_150119060 {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Enter initial principle balance: ");
+		int initialPrincipleBalance = input.nextInt();
+		
+		System.out.print("Enter yearly interest rate: ");
+		int interestRate = input.nextInt();
+		
+		System.out.print("Enter monthly time periods: ");
+		int numberOfTimePeriods = input.nextInt();
+		
+	    double initialBalance = initialPrincipleBalance;
+	    
+	    double monthlyInterestRate = interestRate / numberOfTimePeriods;
+	    
+	    double finalBalance = initialPrincipleBalance * Math.pow(1 + (interestRate / 12), numberOfTimePeriods);
+	    System.out.print("Final Balance: " + finalBalance);
+
+	}
+
+}
