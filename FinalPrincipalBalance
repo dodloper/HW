@@ -10,22 +10,30 @@ public class Pro2_{
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		
 		System.out.print("Enter initial principle balance: ");
-		int initialPrincipleBalance = input.nextInt();
+		double initialPrincipleBalance = input.nextDouble();
 		
 		System.out.print("Enter yearly interest rate: ");
-		int interestRate = input.nextInt();
+		double interestRate = input.nextInt();
 		
 		System.out.print("Enter monthly time periods: ");
-		int numberOfTimePeriods = input.nextInt();
+		double numberOfTimePeriods = input.nextDouble();
 		
 	    double initialBalance = initialPrincipleBalance;
 	    
 	    double monthlyInterestRate = interestRate / numberOfTimePeriods;
 	    
 	    double finalBalance = initialPrincipleBalance * Math.pow(1 + (interestRate / 12), numberOfTimePeriods);
-	    System.out.print("Final Balance: " + finalBalance);
+	    
+	    double totalCompoundInterest = finalBalance - initialPrincipleBalance;
+	    
+	    System.out.println("Initial balance: " + initialBalance);
+	    
+	    System.out.println("Monthly interest rate: " + monthlyInterestRate);
+	    
+	    System.out.println("Total compound interest: " + totalCompoundInterest);
+	    
+	    System.out.println("Final Balance: " + finalBalance);
 
 	}
 
