@@ -10,31 +10,26 @@ public class Pro2_{
 
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
+			
+		//Prompt the user for input
 		System.out.print("Enter initial principle balance: ");
 		double initialPrincipleBalance = input.nextDouble();
 		
-		System.out.print("Enter yearly interest rate: ");
-		double interestRate = input.nextInt();
+		System.out.print("Enter yearly interest rate (Ex :9,45): ");
+		double interestRate = input.nextDouble();
 		
-		System.out.print("Enter monthly time periods: ");
+		System.out.print("Enter monthly time periods (Ex :8): ");
 		double numberOfTimePeriods = input.nextDouble();
-		
-	    double initialBalance = initialPrincipleBalance;
 	    
-	    double monthlyInterestRate = interestRate / numberOfTimePeriods;
+	    System.out.println("Initial balance: " + initialPrincipleBalance);
 	    
-	    double finalBalance = initialPrincipleBalance * Math.pow(1 + (interestRate / 12), numberOfTimePeriods);
-	    
+	    System.out.println("Monthly interest rate: " + (int)((interestRate / 12) * 100) /100.0);
+	    double interestRatePercentage = interestRate / 100; 
+	    double monthlyInterestRate = interestRatePercentage / 12;
+	    double finalBalance = (initialPrincipleBalance * (Math.pow(1 + monthlyInterestRate, numberOfTimePeriods)));
 	    double totalCompoundInterest = finalBalance - initialPrincipleBalance;
-	    
-	    System.out.println("Initial balance: " + initialBalance);
-	    
-	    System.out.println("Monthly interest rate: " + monthlyInterestRate);
-	    
-	    System.out.println("Total compound interest: " + totalCompoundInterest);
-	    
-	    System.out.println("Final Balance: " + finalBalance);
-
+	    System.out.println("Total compound interest: " + (int)(totalCompoundInterest * 100) / 100.0);
+	    System.out.println("Final Balance: " + (int)(finalBalance * 100) / 100.0);
 	}
 
 }
