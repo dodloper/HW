@@ -1,0 +1,93 @@
+/*This Program will determine whether or not it is valid per the Luhn formula. 
+ * The Luhn algorithm is a simple checksum formula used to validate a variety of identification numbers,
+ *  such as credit card numbers. The task is to check if a given string is valid.
+ */
+
+
+import java.util.Scanner;
+
+
+public class LuhnFormula {
+	public static boolean validateNumber (String number) {
+		int value = 0;
+		for( int i = 0; i < number.length(); i++) {
+			value += (number.charAt(i)-'0');
+		}
+		
+		return value % 10 == 0? true:false; 
+		
+	}
+	public static String putSecondDigit(char []creditCardNumber){
+		String number = "";
+		
+		for(int i = creditCardNumber.length-2; i>= 0; i -= 2) {
+			int x = (creditCardNumber[i] - '0');
+			int value = (creditCardNumber[i] - '0')*2;
+			if(value > 9) {
+				value = value - 9;
+			}
+			creditCardNumber[i] = (char)(value + '0');
+		}
+		for(int i = 0; i < creditCardNumber.length; i++) {
+			number += creditCardNumber[i];
+		}
+		return number;
+	}
+	public static String takeSecondDigit(char[] cardNumber) {
+		String number = "";
+		for(int i = cardNumber.length-1; i>= 0; i -= 2) {
+			cardNumber[i] = '_';
+		}
+		for(int i = 0; i < cardNumber.length; i++){
+			number += cardNumber[i];
+		}
+		
+		return number;
+	}
+	public static char[] removeWhitespace(String creditCardNumber) {
+		//remove the whitespace
+		String splittedCreditCardNumber = "";
+		for(int i = 0; i < creditCardNumber.length(); i++ ) {
+			if(creditCardNumber.charAt(i)!= ' ') {
+				splittedCreditCardNumber += creditCardNumber.charAt(i);
+				
+			}	
+		}
+		char[] cardNumberArray = new char[splittedCreditCardNumber.length()];
+		for(int i = 0; i < cardNumberArray.length; i++) {
+			cardNumberArray[i] = splittedCreditCardNumber.charAt(i);
+		}
+		
+		return cardNumberArray;
+	}
+	public static boolean isValid (String number) {
+		 //check if the input is as desired.
+		   for(int i = 0; i < number.length() ; i ++) {
+			  if(!(number.length() > 1 && ((number.charAt(i) >= '0' &&  number.charAt(i) <='9')  || number.charAt(i) == (' ')))) {
+			    return false;	
+			  }			
+		   }
+		   return true;
+		}
+
+
+
+	public static void main(String[] args) {
+       Scanner input = new Scanner(System.in);
+     //Prompt the user for input
+       String number = input.nextLine();
+       if(!isValid(number)) {
+			 System.out.println("Invalid Input !");
+		     System.exit(0);
+		}
+       System.out.println("DNumber:" + takeSecondDigit(removeWhitespace(number)));
+       System.out.println("LNumber:" + putSecondDigit(removeWhitespace(number)));
+       if(validateNumber(putSecondDigit(removeWhitespace(number)))){
+    	   System.out.println("Number is Valid");
+       }
+       else {
+    	   System.out.println("Number is Invalid");
+       }
+	}
+
+}
